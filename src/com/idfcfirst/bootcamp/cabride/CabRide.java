@@ -4,6 +4,7 @@ public class CabRide {
 
     public static final int FARE_PER_KILOMETER = 10;
     public static final int WAITING_CHARGE_PER_MINUTE = 2;
+    public static final int MINIMUM_FARE = 40;
     private final int distance;
     private final int waitingTime;
 
@@ -17,6 +18,7 @@ public class CabRide {
         int totalDistanceFare = this.distance * FARE_PER_KILOMETER;
         int totalWaitingCharge = this.waitingTime * WAITING_CHARGE_PER_MINUTE;
         int totalFare = totalDistanceFare + totalWaitingCharge;
-        return totalFare;
+
+        return Math.max(totalFare, MINIMUM_FARE);
     }
 }

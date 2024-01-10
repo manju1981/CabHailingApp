@@ -18,4 +18,9 @@ public class CabRideTest {
     public void fareShouldBe56WhenDistanceTravelledIs5KmAndWaitingTimeIs3min() {
         assertEquals(56, new CabRide(5,3).Fare());
     }
+
+    @Test
+    public void fareShouldBeMinimumFareWhenTotalFareIsLessThanMinimumFare() {
+        assertEquals(40, new CabRide(2,2).Fare());
+    }
 }
