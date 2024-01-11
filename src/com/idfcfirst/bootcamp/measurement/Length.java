@@ -28,8 +28,6 @@ public class Length  extends Measurement<Length>{
         return new Length(value, METER);
     }
 
-
-
     private static class LengthUnit extends Unit {
         public LengthUnit(int baseValue) {
             super(baseValue);
