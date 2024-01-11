@@ -7,56 +7,56 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LengthTest {
 
     @Test
-    public void OneKmShouldBeEqualTo1000CentiMeter()
+    public void oneKmShouldBeEqualTo1000CentiMeter()
     {
-        Length kilometer = Length.KiloMeter(1);
-        assertEquals(1000, kilometer.baseValue());
+        Length kilometer = Length.kiloMeter(1);
+        assertEquals(Length.centiMeter(100000), kilometer);
     }
 
     @Test
-    public void TwoKilometerShouldBeEqualToTwoKilometer()
+    public void twoKilometerShouldBeEqualToTwoKilometer()
     {
-        Length kilometer = Length.KiloMeter(2);
-        assertEquals(Length.KiloMeter(2), kilometer);
+        Length twoKilometer = Length.kiloMeter(2);
+        assertEquals(Length.kiloMeter(2), twoKilometer);
     }
 
     @Test
-    public void OneCentimeterShouldBeEqualTo1CentiMeter()
+    public void oneCentimeterShouldBeEqualTo1CentiMeter()
     {
-        Length centimeter = Length.CentiMeter(1);
-        assertEquals(1, centimeter.baseValue());
+        Length centimeter = Length.centiMeter(1);
+        assertEquals(Length.centiMeter(1), centimeter);
     }
 
     @Test
-    public void ThousandCentimeterShouldBeEqualTo1KiloMeter() {
-        Length centimeter = Length.CentiMeter(1000);
-        Length kilometer = Length.KiloMeter(1);
-        assertEquals(centimeter, kilometer);
+    public void thousandCentimeterShouldBeEqualTo1KiloMeter() {
+        Length thousandCentimeter = Length.centiMeter(100000);
+        Length kilometer = Length.kiloMeter(1);
+        assertEquals(thousandCentimeter, kilometer);
     }
 
     @Test
-    public void Add200CentimeterAnd2Kilometer() {
-        Length centimeter = Length.CentiMeter(200);
-        Length kilometer = Length.KiloMeter(2);
-        Length calculated = centimeter.Add(kilometer);
-        assertEquals(Length.CentiMeter(2200), calculated);
+    public void add200CentimeterAnd2Kilometer() {
+        Length twoHundredCentimeter = Length.centiMeter(200);
+        Length twoKilometer = Length.kiloMeter(2);
+        Length calculated = twoHundredCentimeter.add(twoKilometer);
+        assertEquals(Length.centiMeter(200200), calculated);
     }
 
 
     @Test
-    public void Add2KilometerAnd200Centimeter() {
-        Length centimeter = Length.CentiMeter(200);
-        Length kilometer = Length.KiloMeter(2);
-        Length calculated = kilometer.Add(centimeter);
-        assertEquals(Length.KiloMeter(2.2), calculated);
+    public void add2KilometerAnd200Centimeter() {
+        Length twoHundredcentimeter = Length.centiMeter(200);
+        Length kilometer = Length.kiloMeter(2);
+        Length calculated = kilometer.add(twoHundredcentimeter);
+        assertEquals(Length.kiloMeter(2.002), calculated);
     }
 
     @Test
-    public void Add2KilometerAnd3Meter() {
-        Length centimeter = Length.Meter(3);
-        Length kilometer = Length.KiloMeter(2);
-        Length calculated = kilometer.Add(centimeter);
-        assertEquals(Length.KiloMeter(2.3), calculated);
+    public void add2KilometerAnd3Meter() {
+        Length threeMeter = Length.meter(3);
+        Length kilometer = Length.kiloMeter(2);
+        Length calculated = kilometer.add(threeMeter);
+        assertEquals(Length.kiloMeter(2.003), calculated);
 
     }
 }

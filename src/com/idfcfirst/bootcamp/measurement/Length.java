@@ -3,36 +3,35 @@ package com.idfcfirst.bootcamp.measurement;
 import java.util.Objects;
 
 public class Length {
-    private static final Unit KILOMETER = new Unit( 1000);
+    private static final Unit KILOMETER = new Unit( 100000);
     private static final Unit CENTIMETER = new Unit(1);
 
     private static final Unit METER = new Unit(100);
     private double value;
     private final Unit unit;
 
-    public Length(double value, Unit unit) {
+    private Length(double value, Unit unit) {
         this.value = value;
         this.unit = unit;
     }
 
-    public static Length KiloMeter(double value) {
+    public static Length kiloMeter(double value) {
         return new Length(value, KILOMETER);
     }
 
-    public static Length CentiMeter(double value) {
+    public static Length centiMeter(double value) {
         return new Length(value, CENTIMETER);
     }
 
-    public static Length Meter(double  value) {
+    public static Length meter(double  value) {
         return new Length(value, METER);
     }
 
-    public double baseValue() {return this.unit.ToBaseValue(value);}
+    private double baseValue() {return this.unit.ToBaseValue(value);}
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
         return baseValue() == ((Length) o).baseValue();
     }
 
@@ -41,8 +40,8 @@ public class Length {
         return Objects.hash(value, unit);
     }
 
-    public Length Add(Length kilometer) {
-        double baseValue = this.baseValue() + kilometer.baseValue();
+    public Length add(Length length) {
+        double baseValue = this.baseValue() + length.baseValue();
         double convertedValue = baseValue / this.unit.baseValue();
         return new Length(convertedValue, this.unit);
     }
