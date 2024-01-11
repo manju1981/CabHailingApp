@@ -1,18 +1,19 @@
 package com.idfcfirst.bootcamp.measurement;
 
-import java.util.Objects;
 
-public class Length {
-    private static final Unit KILOMETER = new Unit( 100000);
-    private static final Unit CENTIMETER = new Unit(1);
+public class Length  extends Measurement<Length>{
+    private static final Unit KILOMETER = new LengthUnit( 100000);
+    private static final Unit CENTIMETER = new LengthUnit(1);
 
-    private static final Unit METER = new Unit(100);
-    private double value;
-    private final Unit unit;
+    private static final Unit METER = new LengthUnit(100);
 
     private Length(double value, Unit unit) {
-        this.value = value;
-        this.unit = unit;
+        super(value, unit);
+    }
+
+    @Override
+    public Length create(double value, Unit unit) {
+        return new Length(value, unit);
     }
 
     public static Length kiloMeter(double value) {
@@ -27,22 +28,11 @@ public class Length {
         return new Length(value, METER);
     }
 
-    private double baseValue() {return this.unit.ToBaseValue(value);}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        return baseValue() == ((Length) o).baseValue();
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, unit);
-    }
-
-    public Length add(Length length) {
-        double baseValue = this.baseValue() + length.baseValue();
-        double convertedValue = baseValue / this.unit.baseValue();
-        return new Length(convertedValue, this.unit);
+    private static class LengthUnit extends Unit {
+        public LengthUnit(int baseValue) {
+            super(baseValue);
+        }
     }
 }

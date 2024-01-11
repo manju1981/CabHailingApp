@@ -1,18 +1,13 @@
 package com.idfcfirst.bootcamp.measurement;
 
-import java.util.Objects;
 
-public class Weight {
-    private static final Unit MILLIGRAM = new Unit( 1);
-    private static final Unit GRAM = new Unit(1000);
+public class Weight extends Measurement<Weight>{
+    private static final WeightUnit MILLIGRAM = new WeightUnit( 1);
+    private static final WeightUnit GRAM = new WeightUnit(1000);
 
-    private static final Unit KILOGRAM = new Unit(1000000);
-    private double value;
-    private final Unit unit;
-
+    private static final WeightUnit KILOGRAM = new WeightUnit(1000000);
     private Weight(double value, Unit unit) {
-        this.value = value;
-        this.unit = unit;
+       super(value, unit);
     }
 
     public static Weight kilogram(double value) {
@@ -27,22 +22,16 @@ public class Weight {
         return new Weight(value, GRAM);
     }
 
-    public double baseValue() {return this.unit.ToBaseValue(value);}
-
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        return baseValue() == ((Weight) o).baseValue();
+    public Weight create(double value, Unit unit) {
+        return new Weight(value, unit);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(value, unit);
-    }
 
-    public Weight add(Weight weight) {
-        double baseValue = this.baseValue() + weight.baseValue();
-        double convertedValue = baseValue / this.unit.baseValue();
-        return new Weight(convertedValue, this.unit);
+    private static class WeightUnit extends  Unit{
+
+        public WeightUnit(int baseValue) {
+            super(baseValue);
+        }
     }
 }

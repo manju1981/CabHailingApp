@@ -58,6 +58,6 @@ public class WeightTest {
         Weight kilogram = Weight.kilogram(2);
         Weight calculated = kilogram.add(threeHundredMilligram);
         assertEquals(Weight.kilogram(2.0003), calculated);
-
     }
+
 }

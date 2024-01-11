@@ -1,6 +1,6 @@
 package com.idfcfirst.bootcamp.measurement;
 
-public class Unit {
+public abstract class Unit {
     private final int baseValue;
 
     public Unit(int baseValue) {
