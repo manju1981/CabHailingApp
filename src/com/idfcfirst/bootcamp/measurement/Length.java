@@ -2,10 +2,10 @@ package com.idfcfirst.bootcamp.measurement;
 
 
 public class Length  extends Measurement<Length>{
-    private static final Unit KILOMETER = new LengthUnit( 100000);
-    private static final Unit CENTIMETER = new LengthUnit(1);
+    private static final Unit KILOMETER = new Unit( 100000, 0);
+    private static final Unit CENTIMETER = new Unit(1,0);
 
-    private static final Unit METER = new LengthUnit(100);
+    private static final Unit METER = new Unit(100, 0);
 
     private Length(double value, Unit unit) {
         super(value, unit);
@@ -28,9 +28,5 @@ public class Length  extends Measurement<Length>{
         return new Length(value, METER);
     }
 
-    private static class LengthUnit extends Unit {
-        public LengthUnit(int baseValue) {
-            super(baseValue);
-        }
-    }
+
 }

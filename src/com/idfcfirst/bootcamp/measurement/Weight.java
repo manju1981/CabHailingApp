@@ -2,10 +2,10 @@ package com.idfcfirst.bootcamp.measurement;
 
 
 public class Weight extends Measurement<Weight>{
-    private static final WeightUnit MILLIGRAM = new WeightUnit( 1);
-    private static final WeightUnit GRAM = new WeightUnit(1000);
+    private static final Unit MILLIGRAM = new Unit( 1,0);
+    private static final Unit GRAM = new Unit(1000,0);
 
-    private static final WeightUnit KILOGRAM = new WeightUnit(1000000);
+    private static final Unit KILOGRAM = new Unit(1000000,0);
     private Weight(double value, Unit unit) {
        super(value, unit);
     }
@@ -28,10 +28,5 @@ public class Weight extends Measurement<Weight>{
     }
 
 
-    private static class WeightUnit extends  Unit{
 
-        public WeightUnit(int baseValue) {
-            super(baseValue);
-        }
-    }
 }

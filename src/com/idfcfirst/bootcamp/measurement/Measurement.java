@@ -16,7 +16,7 @@ public abstract class Measurement<T>  {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        return baseValue() == ((Measurement<T>) o).baseValue();
+        return Math.abs(baseValue() - ((Measurement<Object>) o).baseValue())<=0.005;
     }
 
     @Override
@@ -25,7 +25,7 @@ public abstract class Measurement<T>  {
     }
 
     public abstract T create(double value, Unit unit);
-    public T add(Measurement<T> t) {
+    public T add(Measurement<T> t) throws UnsupportedOperationException{
         double baseValue = this.baseValue() + t.baseValue();
         double convertedValue = baseValue / this.unit.baseValue();
         return this.create(convertedValue, this.unit);
